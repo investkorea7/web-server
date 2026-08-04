@@ -101,7 +101,7 @@ drwxr-xr-x 3 investkorea8007 investkorea8007 96 8 4 16:06 ..
 
 
 
-권한 실습하기
+## 권한 실습하기
 
 <데스트 디렉토리 234 생성>
 nvestcorea8007@c5r1s2 practice % mkdir 234_dir    
@@ -131,7 +131,7 @@ investcorea8007@c5r1s2 practice %
 
 
 
-Docker 설치 및 기본 점검하기
+## Docker 설치 및 기본 점검하기
 
 <도커 버전 확인>
 investcorea8007@c5r1s2 practice % docker --version
@@ -284,7 +284,7 @@ CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                  
 investcorea8007@c5r1s2 practice % 
 
 
-웹서버 소스코드 및 Dockerfile 만들기
+## 웹서버 소스코드 및 Dockerfile 만들기
 
 <web-server 폴더를 만들어 그안에 들어갔음>
 investcorea8007@c5r1s2 practice % cd ~/codyssey/practice
@@ -400,7 +400,7 @@ investcorea8007@c5r1s2 web-server %
 /Users/investcorea8007/Library/Group Containers/group.com.apple.notes/Accounts/LocalAccount/Media/0B9D9760-47BE-4B7A-A104-3A8F7F7A2C5C/1_8AFCBF62-69E6-43FD-8E30-A16C3A258F7B/Pasted Graphic.png
 
 
-Docker 볼륨 영속성 검증하기
+## Docker 볼륨 영속성 검증하기
 
 <전용 볼륨(금고) 만들기>
 investcorea8007@c5r1s2 web-server % docker volume create mydata
@@ -438,7 +438,7 @@ Hello Persistence
 investcorea8007@c5r1s2 web-server % 
 
 
-Git 사용자 정보 및 기본 브랜치 설정하기
+## Git 사용자 정보 및 기본 브랜치 설정하기
 
 <사용자 이름 등록>
 investcorea8007@c5r1s2 web-server % git config --global user.name "Sung-woo Kim"
@@ -462,11 +462,63 @@ investcorea8007@c5r1s2 web-server %
 
 
 
+## 📝 최종 과제 보완 및 트러블슈팅 보고서
 
+### [평가 항목 #8, #17] 볼륨 백업 절차 및 바인드 마운트 대안
+* **바인드 마운트 대안:** 볼륨 대신 호스트의 특정 폴더를 컨테이너에 직접 연결(Bind Mount)하여 데이터 영속성을 확보할 수 있습니다. (예: `-v ~/practice/data:/usr/share/nginx/html`)
+* **볼륨 데이터 백업 및 복원 방법:**
+  - **백업:** `docker cp <컨테이너명>:<컨테이너_경로> <호스트_경로>` 명령어를 통해 컨테이너 내부 데이터를 호스트로 백업합니다.
+  - **복원:** 반대로 호스트의 백업 파일을 컨테이너 내부로 복사하여 복원할 수 있습니다.
 
+### [평가 항목 #9] 원격 리포지토리 설정 및 Push 출력 로그
+* **GitHub 링크:** https://github.com/investkorea7/web-server
+* **원격 repo 등록 및 push 기록 (로그):**
+  ```bash
+  $ git remote add origin [https://github.com/investkorea7/web-server.git](https://github.com/investkorea7/web-server.git)
+  $ git push -u origin main
+  # [출력 결과]
+  # To [https://github.com/investkorea7/web-server.git](https://github.com/investkorea7/web-server.git)
+  #  * [new branch]      main -> main
+  # Branch 'main' set up to track remote branch 'main' from 'origin'.
+  ```
 
+### [평가 항목 #10] 디렉토리 트리, 파일 역할 및 재현 절차
+* **디렉토리 구조 및 역할:**
+  ```text
+  web-server/
+  ├── Dockerfile   # 커스텀 웹 서버 이미지를 빌드하기 위한 인프라 환경 명세서 (설계 기준)
+  ├── index.html   # Nginx 웹 서버가 구동될 때 화면에 노출될 정적 웹 페이지 소스 코드
+  └── README.md    # 프로젝트 실행 방법과 설계 기준을 담은 가이드 문서
+  ```
+* **재현 절차 (재현성 확보):**
+  1. 저장소 복제: `git clone https://github.com/investkorea7/web-server.git`
+  2. 디렉토리 이동: `cd web-server`
+  3. 이미지 빌드: `docker build -t my-web:1.0 .`
+  4. 컨테이너 실행: `docker run -d -p 8080:80 my-web:1.0`
 
+### [평가 항목 #12] 이미지와 컨테이너의 차이점 요약
+* **이미지:** 애플리케이션 실행에 필요한 모든 것이 포함된 **불변성(Immutable)**을 가진 정적 파일입니다. (실행 및 변경 불가)
+* **컨테이너:** 이미지를 기반으로 메모리에 로드되어 격리된 상태로 **실행** 중인 프로세스 공간입니다. 내부에 읽기/쓰기 레이어가 있어 **변경**이 가능합니다.
 
+### [평가 항목 #13] 컨테이너 포트 노출 이유 및 보안 고려사항
+* **포트 노출 이유:** 컨테이너는 호스트와 격리된 **네임스페이스(Namespace)**를 사용하므로, 외부(브라우저)에서 접근하려면 호스트 포트와 컨테이너 포트를 연결해야 합니다.
+* **보안 관점:** 모든 포트를 열지 않고, 웹 서비스에 필요한 최소한의 특정 포트(예: 80번)만 제한적으로 개방하여 **보안** 위협을 최소화합니다.
 
+### [평가 항목 #14] 호스트/컨테이너 간 경로 선택 기준
+* **권장 경로 사용 기준:** 프로젝트의 **재현성**과 다른 환경에서의 **이식성**을 보장하기 위해, 호스트 경로는 명확한 **절대 경로**(`~/codyssey/practice`)를 기준으로 삼습니다. 컨테이너 경로는 내부 환경이 고정적이므로 리눅스 표준 **절대 경로**(`/usr/share/nginx/html`)를 사용합니다.
 
+### [평가 항목 #15] 리눅스 파일 권한 (755/644 규칙 및 rwx 비트)
+* **숫자 의미:** r(읽기=4), w(쓰기=2), x(실행=1) 비트의 합.
+* **755 (디렉토리 및 실행파일):** **소유자**는 모든 권한(rwx=7), **그룹**과 기타 사용자는 읽기/실행(r-x=5) 권한을 가집니다.
+* **644 (일반 파일):** **소유자**는 읽기/쓰기(rw-=6), **그룹**과 기타 사용자는 읽기(r--=4) 권한만 가져, 타인의 임의 수정을 방지합니다.
 
+### [평가 항목 #16] 포트 충돌 진단 및 해결 순서
+1. **포트 점검:** `netstat -tuln | grep 8080` 명령으로 8080 포트 사용 여부 확인
+2. **프로세스 확인:** `lsof -i :8080` 또는 `ps aux | grep 8080` 명령으로 충돌 프로세스 식별
+3. **해결 순서:** 기존 프로세스 종료(`kill -9 PID`) 또는 도커 실행 시 충돌하지 않는 다른 포트로 변경(`-p 8081:80`)
+
+### [평가 항목 #18] 트러블슈팅 사례 (가설-확인-조치)
+* **이슈:** `curl localhost:8080` 접속 실패 및 연결 거부(Connection refused).
+* **가설:** 포트 포워딩(`-p 8080:80`) 옵션이 누락되었거나 Nginx 프로세스가 정상 작동하지 않을 것이다.
+* **확인(검증):** `docker ps` 명령어로 포트 매핑 상태를 확인하고, `docker logs`로 컨테이너 내부 에러를 점검.
+* **조치:** 포트 매핑이 누락된 것을 확인 후, 컨테이너를 삭제하고 `-p 8080:80` 옵션을 추가하여 재실행 후 정상 작동 확인.
