@@ -33,14 +33,17 @@
 ## 4. 수행 방법 및 검증 로그
 <현재위치 확인>
 investcorea8007@c5r1s2 ~ % pwd 
+...
 /Users/investcorea8007
 
 <폴더생성>
 investcorea8007@c5r1s2 ~ % mkdir -p ~/codyssey/practice  
+...
 investcorea8007@c5r1s2 ~ %
 
 <폴더목록>
 nvestcorea8007@c5r1s2 ~ % ls -la
+...
 total 48
 drwxr-x---+ 22 investcorea8007  investcorea8007   704  8  4 16:06 .
 drwxr-xr-x   7 root             admin             224  8  3 19:58 ..
@@ -68,14 +71,17 @@ investcorea8007@c5r1s2 ~ %
 
 <폴더 안으로 이동>
 nvestcorea8007@c5r1s2 ~ % cd ~/codyssey/practice
+...
 investcorea8007@c5r1s2 practice % 
 
 <텍스트파일을 만듬>
 investcorea8007@c5r1s2 practice % touch 123.txt
+...
 investcorea8007@c5r1s2 practice % 
 
 <텍스트파일 확인>
 investcorea8007@c5r1s2 practice % ls -la 
+...
 total 0
 drwxr-xr-x  3 investcorea8007  investcorea8007  96  8  4 16:20 .
 drwxr-xr-x  3 investcorea8007  investcorea8007  96  8  4 16:06 ..
@@ -84,10 +90,12 @@ investcorea8007@c5r1s2 practice %
 
 <123파일에 어떤 내용이 있는지 확인>
 investcorea8007@c5r1s2 practice % cat 123.txt
+...
 investcorea8007@c5r1s2 practice % 
 
 <123파일 카피본 만듬>
 investcorea8007@c5r1s2 practice % cp 123.txt copy_123.txt
+...
 investcorea8007@c5r1s2 practice % ls -la
 total 0
 drwxr-xr-x  4 investcorea8007  investcorea8007  128  8  4 16:27 .
@@ -98,6 +106,7 @@ investcorea8007@c5r1s2 practice %
 
 <카피파일 이름을 welcome로 바꿈>
 investcorea8007@c5r1s2 practice % mv copy_123.txt welcome.txt
+...
 investcorea8007@c5r1s2 practice % ls -la
 total 0
 drwxr-xr-x  4 investcorea8007  investcorea8007  128  8  4 17:16 .
@@ -108,7 +117,9 @@ investcorea8007@c5r1s2 practice %
 
 <123파일 삭제>
 investcorea8007@c5r1s2 practice % rm welcome.txt
+...
 investcorea8007@c5r1s2 practice % ls -la
+...
 total 0
 drwxr-xr-x  3 investcorea8007  investcorea8007  96  8  4 17:20 .
 drwxr-xr-x  3 investcorea8007  investcorea8007  96  8  4 16:06 ..
