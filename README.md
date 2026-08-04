@@ -101,14 +101,372 @@ drwxr-xr-x 3 investkorea8007 investkorea8007 96 8 4 16:06 ..
 
 
 
+권한 실습하기
+
+<데스트 디렉토리 234 생성>
+nvestcorea8007@c5r1s2 practice % mkdir 234_dir    
+investcorea8007@c5r1s2 practice % 
+
+<현재 권한 확인>
+investcorea8007@c5r1s2 practice % ls -l
+total 0
+-rw-r--r--  1 investcorea8007  investcorea8007   0  8  4 16:20 123.txt
+drwxr-xr-x  2 investcorea8007  investcorea8007  64  8  4 17:30 234_dir
+investcorea8007@c5r1s2 practice % 
+
+<파일권한 변경, 777은 모두에게 읽고 쓰고 실행할 권한을 부여>
+investcorea8007@c5r1s2 practice % ls -l
+total 0
+-rwxrwxrwx  1 investcorea8007  investcorea8007   0  8  4 16:20 123.txt
+drwxr-xr-x  2 investcorea8007  investcorea8007  64  8  4 17:30 234_dir
+investcorea8007@c5r1s2 practice % 
+
+<디렉토리 권한변경, 700은 나 이외에는 아무도 못보게 디렉토리를 꽉 잠그겠다는 뜻>
+investcorea8007@c5r1s2 practice % chmod 700 234_dir    
+investcorea8007@c5r1s2 practice % ls -l
+total 0
+-rwxrwxrwx  1 investcorea8007  investcorea8007   0  8  4 16:20 123.txt
+drwx------  2 investcorea8007  investcorea8007  64  8  4 17:30 234_dir
+investcorea8007@c5r1s2 practice % 
 
 
-### (1) 터미널 및 권한 실습
-```bash
-# 폴더 생성 및 확인
-$ mkdir -p ~/codyssey/practice
-$cd ~/codyssey/practice$ ls -la
 
-# 권한 변경 실험
-$ mkdir test_dir
-$chmod 700 test_dir$ ls -l
+Docker 설치 및 기본 점검하기
+
+<도커 버전 확인>
+investcorea8007@c5r1s2 practice % docker --version
+Docker version 29.4.0, build 9d7ad9f
+investcorea8007@c5r1s2 practice % 
+
+<도커 엔진(데몬) 동작 여부 확인하기>
+investcorea8007@c5r1s2 practice % docker info
+Client:
+ Version:    29.4.0
+ Context:    orbstack
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.33.0
+    Path:     /Users/investcorea8007/.docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.1.2
+    Path:     /Users/investcorea8007/.docker/cli-plugins/docker-compose
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 29.4.0
+ Storage Driver: overlayfs
+  driver-type: io.containerd.snapshotter.v1
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 301b2dac98f15c27117da5c8af12118a041a31d9
+ runc version: c241c0bb5e60a8e8c1b2e53d4eca8d0068d8d57e
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: builtin
+  cgroupns
+ Kernel Version: 7.0.11-orbstack-00360-gc9bc4d96ac70
+ Operating System: OrbStack
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 6
+ Total Memory: 15.69GiB
+ Name: orbstack
+ ID: 26b3b55f-d3da-4981-9474-00895402b8e4
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ HTTP Proxy: http://proxy.orb.internal:8305
+ HTTPS Proxy: http://proxy.orb.internal:8305
+ No Proxy: localhost,127.0.0.1,127.0.0.0/8,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,0.250.250.0/24,*.orb.internal,*.local,gateway.docker.internal,host.internal,host.docker.internal,host.lima.internal,docker.for.mac.localhost,docker.for.mac.host.internal
+ Experimental: true
+ Insecure Registries:
+  127.0.0.0/8
+  ::1/128
+ Live Restore Enabled: false
+ Product License: Community Engine
+ Default Address Pools:
+   Base: 192.168.97.0/24, Size: 24
+   Base: 192.168.107.0/24, Size: 24
+   Base: 192.168.117.0/24, Size: 24
+   Base: 192.168.147.0/24, Size: 24
+   Base: 192.168.148.0/24, Size: 24
+   Base: 192.168.155.0/24, Size: 24
+   Base: 192.168.156.0/24, Size: 24
+   Base: 192.168.158.0/24, Size: 24
+   Base: 192.168.163.0/24, Size: 24
+   Base: 192.168.164.0/24, Size: 24
+   Base: 192.168.165.0/24, Size: 24
+   Base: 192.168.166.0/24, Size: 24
+   Base: 192.168.167.0/24, Size: 24
+   Base: 192.168.171.0/24, Size: 24
+   Base: 192.168.172.0/24, Size: 24
+   Base: 192.168.181.0/24, Size: 24
+   Base: 192.168.183.0/24, Size: 24
+   Base: 192.168.186.0/24, Size: 24
+   Base: 192.168.207.0/24, Size: 24
+   Base: 192.168.214.0/24, Size: 24
+   Base: 192.168.215.0/24, Size: 24
+   Base: 192.168.216.0/24, Size: 24
+   Base: 192.168.223.0/24, Size: 24
+   Base: 192.168.227.0/24, Size: 24
+   Base: 192.168.228.0/24, Size: 24
+   Base: 192.168.229.0/24, Size: 24
+   Base: 192.168.237.0/24, Size: 24
+   Base: 192.168.239.0/24, Size: 24
+   Base: 192.168.242.0/24, Size: 24
+   Base: 192.168.247.0/24, Size: 24
+   Base: fd07:b51a:cc66:d000::/56, Size: 64
+ Firewall Backend: iptables
+
+WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
+investcorea8007@c5r1s2 practice % 
+
+<가벼운 테스트용 이미지 다운로드 및 실행하기>
+investcorea8007@c5r1s2 practice % docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+4f55086f7dd0: Pull complete 
+d5e71e642bf5: Download complete 
+Digest: sha256:c3cbe1cc1aa588a64951ac6286e0df7b27fe2e6324b1001c619bb358770c0178
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+investcorea8007@c5r1s2 practice % 
+
+<다운로드 된 이미지 목록 확인>
+investcorea8007@c5r1s2 practice % docker images
+                                                                     i Info →   U  In Use
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   c3cbe1cc1aa5       21.8kB         9.49kB    U   
+investcorea8007@c5r1s2 practice % 
+
+<실행 중이거나 종료된 컨테이너 목록 확인>
+investcorea8007@c5r1s2 practice % docker ps -a          
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+34a44472af3b   hello-world   "/hello"   6 minutes ago   Exited (0) 6 minutes ago             gracious_goldstine
+investcorea8007@c5r1s2 practice % 
+
+
+웹서버 소스코드 및 Dockerfile 만들기
+
+<web-server 폴더를 만들어 그안에 들어갔음>
+investcorea8007@c5r1s2 practice % cd ~/codyssey/practice
+investcorea8007@c5r1s2 practice % mkdir web-server
+investcorea8007@c5r1s2 practice % cd web-server
+investcorea8007@c5r1s2 web-server % 
+
+<웹서버용 html 만들기>
+investcorea8007@c5r1s2 web-server % echo "안녕 반가워 코디세이. 내 이름은 성우라고해!!" > index.html 
+echo "안녕 반가워 코디세이. 내 이름은 성우라고해cd web-server" > index.html
+investcorea8007@c5r1s2 web-server % 
+
+<Dockerfile(설계도) 만들기>
+investcorea8007@c5r1s2 web-server % echo -e "FROM nginx:alpine\nCOPY index.html /usr/share/nginx/html/index.html"
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+investcorea8007@c5r1s2 web-server % echo "FROM nginx:alpine" > Dockerfile
+investcorea8007@c5r1s2 web-server % echo "COPY index.html /usr/share/nginx/html/index.html" >> Dockerfile
+investcorea8007@c5r1s2 web-server % ls -la
+total 16
+drwxr-xr-x  4 investcorea8007  investcorea8007  128  8  4 18:31 .
+drwxr-xr-x  5 investcorea8007  investcorea8007  160  8  4 18:14 ..
+-rw-r--r--  1 investcorea8007  investcorea8007   67  8  4 18:32 Dockerfile
+-rw-r--r--  1 investcorea8007  investcorea8007   74  8  4 18:19 index.html
+investcorea8007@c5r1s2 web-server %                      
+
+<나만의 커스텀 이미지 빌드하기 (조립하기)>
+investcorea8007@c5r1s2 web-server % docker build -t my-web:1.0 .         
+[+] Building 7.5s (7/7) FINISHED                                               docker:orbstack
+ => [internal] load build definition from Dockerfile                                      0.1s
+ => => transferring dockerfile: 104B                                                      0.0s
+ => [internal] load metadata for docker.io/library/nginx:alpine                           2.2s
+ => [internal] load .dockerignore                                                         0.2s
+ => => transferring context: 2B                                                           0.0s
+ => [internal] load build context                                                         0.3s
+ => => transferring context: 111B                                                         0.0s
+ => [1/2] FROM docker.io/library/nginx:alpine@sha256:4a73073bd557c65b759505da037898b61f1  3.3s
+ => => resolve docker.io/library/nginx:alpine@sha256:4a73073bd557c65b759505da037898b61f1  0.2s
+ => => sha256:46519e7231d2eb5604df229beb44d59719a489eaa7aca52982535a01 20.31MB / 20.31MB  0.5s
+ => => sha256:d0008c891db48b5f526d914bce9e8d889fe1a9d1f08291ae03fe97f871 1.21kB / 1.21kB  0.4s
+ => => sha256:46f977ee452f4399c208714afa034868d6056864f8a0cf3c643ab143dd802c 404B / 404B  0.6s
+ => => sha256:390dc935348d8070e695fbaae2a4bb114fb9e69c59f628e7576036ee9d 1.40kB / 1.40kB  0.6s
+ => => sha256:1223f016b4e4a2c21f7c49d4837fbfd47a9da6436b511690ca1e582fc2810d 627B / 627B  0.2s
+ => => sha256:62bec68d7c31c4c8a19d812d84da5f7748e54690c037979945b6c5b6c924b1 957B / 957B  0.2s
+ => => sha256:3cd534fe98c64d68a1f4f1c83abb8d5cba7ecfd7be88e592389929d12e 1.89MB / 1.89MB  0.3s
+ => => sha256:55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439 3.85MB / 3.85MB  0.3s
+ => => extracting sha256:55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439af26a  0.2s
+ => => extracting sha256:3cd534fe98c64d68a1f4f1c83abb8d5cba7ecfd7be88e592389929d12e6253d  0.2s
+ => => extracting sha256:1223f016b4e4a2c21f7c49d4837fbfd47a9da6436b511690ca1e582fc2810d5  0.1s
+ => => extracting sha256:62bec68d7c31c4c8a19d812d84da5f7748e54690c037979945b6c5b6c924b14  0.1s
+ => => extracting sha256:46f977ee452f4399c208714afa034868d6056864f8a0cf3c643ab143dd802c8  0.1s
+ => => extracting sha256:d0008c891db48b5f526d914bce9e8d889fe1a9d1f08291ae03fe97f871726f3  0.1s
+ => => extracting sha256:390dc935348d8070e695fbaae2a4bb114fb9e69c59f628e7576036ee9d5244c  0.1s
+ => => extracting sha256:46519e7231d2eb5604df229beb44d59719a489eaa7aca52982535a010b07a9e  0.5s
+ => [2/2] COPY index.html /usr/share/nginx/html/index.html                                0.3s
+ => exporting to image                                                                    0.9s
+ => => exporting layers                                                                   0.5s
+ => => exporting manifest sha256:0ef53b8236e47f6353cd45f9fb2a777dd5aafa5690854de91b9fee4  0.1s
+ => => exporting config sha256:382e5087a1984193c9000a4c8a5e54500f48d4cbb886f90139c04ae3a  0.1s
+ => => exporting attestation manifest sha256:b0fb816aba14e1de2bc31a20e2455fe4a0dd55beaa0  0.1s
+ => => exporting manifest list sha256:241dc03559027eb85feb8a68b2546a2d0ab3ebf94c74f806c0  0.1s
+ => => naming to docker.io/library/my-web:1.0                                             0.0s
+ => => unpacking to docker.io/library/my-web:1.0                                          0.1s
+investcorea8007@c5r1s2 web-server % 
+
+<컨테이너 실행 및 포트 연결하기(포트매핑)>
+investcorea8007@c5r1s2 web-server % docker build -t my-web:1.0 .         
+[+] Building 7.5s (7/7) FINISHED                                               docker:orbstack
+ => [internal] load build definition from Dockerfile                                      0.1s
+ => => transferring dockerfile: 104B                                                      0.0s
+ => [internal] load metadata for docker.io/library/nginx:alpine                           2.2s
+ => [internal] load .dockerignore                                                         0.2s
+ => => transferring context: 2B                                                           0.0s
+ => [internal] load build context                                                         0.3s
+ => => transferring context: 111B                                                         0.0s
+ => [1/2] FROM docker.io/library/nginx:alpine@sha256:4a73073bd557c65b759505da037898b61f1  3.3s
+ => => resolve docker.io/library/nginx:alpine@sha256:4a73073bd557c65b759505da037898b61f1  0.2s
+ => => sha256:46519e7231d2eb5604df229beb44d59719a489eaa7aca52982535a01 20.31MB / 20.31MB  0.5s
+ => => sha256:d0008c891db48b5f526d914bce9e8d889fe1a9d1f08291ae03fe97f871 1.21kB / 1.21kB  0.4s
+ => => sha256:46f977ee452f4399c208714afa034868d6056864f8a0cf3c643ab143dd802c 404B / 404B  0.6s
+ => => sha256:390dc935348d8070e695fbaae2a4bb114fb9e69c59f628e7576036ee9d 1.40kB / 1.40kB  0.6s
+ => => sha256:1223f016b4e4a2c21f7c49d4837fbfd47a9da6436b511690ca1e582fc2810d 627B / 627B  0.2s
+ => => sha256:62bec68d7c31c4c8a19d812d84da5f7748e54690c037979945b6c5b6c924b1 957B / 957B  0.2s
+ => => sha256:3cd534fe98c64d68a1f4f1c83abb8d5cba7ecfd7be88e592389929d12e 1.89MB / 1.89MB  0.3s
+ => => sha256:55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439 3.85MB / 3.85MB  0.3s
+ => => extracting sha256:55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439af26a  0.2s
+ => => extracting sha256:3cd534fe98c64d68a1f4f1c83abb8d5cba7ecfd7be88e592389929d12e6253d  0.2s
+ => => extracting sha256:1223f016b4e4a2c21f7c49d4837fbfd47a9da6436b511690ca1e582fc2810d5  0.1s
+ => => extracting sha256:62bec68d7c31c4c8a19d812d84da5f7748e54690c037979945b6c5b6c924b14  0.1s
+ => => extracting sha256:46f977ee452f4399c208714afa034868d6056864f8a0cf3c643ab143dd802c8  0.1s
+ => => extracting sha256:d0008c891db48b5f526d914bce9e8d889fe1a9d1f08291ae03fe97f871726f3  0.1s
+ => => extracting sha256:390dc935348d8070e695fbaae2a4bb114fb9e69c59f628e7576036ee9d5244c  0.1s
+ => => extracting sha256:46519e7231d2eb5604df229beb44d59719a489eaa7aca52982535a010b07a9e  0.5s
+ => [2/2] COPY index.html /usr/share/nginx/html/index.html                                0.3s
+ => exporting to image                                                                    0.9s
+ => => exporting layers                                                                   0.5s
+ => => exporting manifest sha256:0ef53b8236e47f6353cd45f9fb2a777dd5aafa5690854de91b9fee4  0.1s
+ => => exporting config sha256:382e5087a1984193c9000a4c8a5e54500f48d4cbb886f90139c04ae3a  0.1s
+ => => exporting attestation manifest sha256:b0fb816aba14e1de2bc31a20e2455fe4a0dd55beaa0  0.1s
+ => => exporting manifest list sha256:241dc03559027eb85feb8a68b2546a2d0ab3ebf94c74f806c0  0.1s
+ => => naming to docker.io/library/my-web:1.0                                             0.0s
+ => => unpacking to docker.io/library/my-web:1.0                                          0.1s
+investcorea8007@c5r1s2 web-server % docker run -d -p 8080:80 --name my-web-8080 my-web:1.0
+1bd7401bef448d484b626818ef3c652001ff0dad743980a38f120ce5712e1476
+investcorea8007@c5r1s2 web-server % 
+
+<터미널에서 웹 접속 확인>
+investcorea8007@c5r1s2 web-server % curl http://localhost:8080                              
+안녕 반가워 코디세이. 내 이름은 성우라고해cd web-server
+investcorea8007@c5r1s2 web-server % 
+
+<브라우저에서 접속 확인>
+/Users/investcorea8007/Library/Group Containers/group.com.apple.notes/Accounts/LocalAccount/Media/0B9D9760-47BE-4B7A-A104-3A8F7F7A2C5C/1_8AFCBF62-69E6-43FD-8E30-A16C3A258F7B/Pasted Graphic.png
+
+
+Docker 볼륨 영속성 검증하기
+
+<전용 볼륨(금고) 만들기>
+investcorea8007@c5r1s2 web-server % docker volume create mydata
+mydata
+investcorea8007@c5r1s2 web-server % 
+
+<볼륨을 연결한 테스트용 컨테이너 실행>
+investcorea8007@c5r1s2 web-server % docker run -d --name vol-test -v mydata:/data ubuntu sleep infinity
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+617772c7d19b: Pull complete 
+a7fb98a8eddd: Pull complete 
+cc2ffdbc1bf7: Download complete 
+Digest: sha256:678c6550cc43645e08669028bc177f50be4e7c5b8cca677067b1914d4afc7a03
+Status: Downloaded newer image for ubuntu:latest
+6a89e3be333f1ef86744466940e9ed1c6ff608fd8724a7065d88521a95cc2f51
+investcorea8007@c5r1s2 web-server % 
+
+<컨테이너 안의 볼륨 폴더에 파일 만들고 내용 확인>
+investcorea8007@c5r1s2 web-server % docker exec -it vol-test bash -c "echo 'Hello Persistence' > /data/test.txt && cat /data/test.txt"
+Hello Persistence
+investcorea8007@c5r1s2 web-server % 
+
+<컨테이너 통째로 삭제>
+investcorea8007@c5r1s2 web-server % docker rm -f vol-test
+vol-test
+investcorea8007@c5r1s2 web-server % 
+
+<새로운 컨테이너를 띄워서 볼륨 폴더 속 데이터가 살아있는지 증명>
+investcorea8007@c5r1s2 web-server % docker run -d --name vol-test2 -v mydata:/data ubuntu sleep infinity
+
+docker exec -it vol-test2 bash -c "cat /data/test.txt"
+00310861161d3b6678f44c9cc54e41689fb8fa19908e1f738de6e2e4f0e4c40d
+Hello Persistence
+investcorea8007@c5r1s2 web-server % 
+
+
+Git 사용자 정보 및 기본 브랜치 설정하기
+
+<사용자 이름 등록>
+investcorea8007@c5r1s2 web-server % git config --global user.name "Sung-woo Kim"
+investcorea8007@c5r1s2 web-server % 
+
+<이메일 등록>
+investcorea8007@c5r1s2 web-server % git config --global user.email "investcorea@hanmail.net"
+investcorea8007@c5r1s2 web-server %
+
+<기본 브랜치 이름 설정>
+investcorea8007@c5r1s2 web-server % git config --global init.defaultBranch main
+investcorea8007@c5r1s2 web-server % 
+
+<이름, 이메일, 브렌치가 잘 설정됐는지 확인>
+investcorea8007@c5r1s2 web-server % git config --list
+credential.helper=osxkeychain
+user.name=Sung-woo Kim
+user.email=investcorea@hanmail.net
+init.defaultbranch=main
+investcorea8007@c5r1s2 web-server %
+
+
+
+
+
+
+
+
+
+
+
