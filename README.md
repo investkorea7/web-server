@@ -31,6 +31,94 @@
 ---
 
 ## 4. 수행 방법 및 검증 로그
+<현재위치 확인>
+investcorea8007@c5r1s2 ~ % pwd 
+/Users/investcorea8007
+
+<폴더생성>
+investcorea8007@c5r1s2 ~ % mkdir -p ~/codyssey/practice  
+investcorea8007@c5r1s2 ~ %
+
+<폴더목록>
+nvestcorea8007@c5r1s2 ~ % ls -la
+total 48
+drwxr-x---+ 22 investcorea8007  investcorea8007   704  8  4 16:06 .
+drwxr-xr-x   7 root             admin             224  8  3 19:58 ..
+-r--------   1 investcorea8007  investcorea8007     8  8  3 11:43 .CFUserTextEncoding
+drwxr-xr-x   5 investcorea8007  investcorea8007   160  8  4 15:29 .docker
+-rw-r--r--@  1 investcorea8007  investcorea8007  8196  8  4 10:45 .DS_Store
+drwx------  10 investcorea8007  investcorea8007   320  8  4 15:29 .orbstack
+drwxr-xr-x   3 investcorea8007  investcorea8007    96  8  4 15:29 .ssh
+drwx------+ 26 investcorea8007  investcorea8007   832  8  4 15:52 .Trash
+drwxr-xr-x   3 investcorea8007  investcorea8007    96  8  3 11:46 .vscode
+-rw-r--r--   1 investcorea8007  investcorea8007   154  8  4 15:29 .zprofile
+-rw-------   1 investcorea8007  investcorea8007    20  8  4 15:38 .zsh_history
+drwx------   6 investcorea8007  investcorea8007   192  8  4 15:38 .zsh_sessions
+drwxr-xr-x   3 investcorea8007  investcorea8007    96  8  4 16:06 codyssey
+drwx------+  7 investcorea8007  investcorea8007   224  8  4 15:52 Desktop
+drwx------+  3 investcorea8007  investcorea8007    96  8  3 11:43 Documents
+drwx------+  7 investcorea8007  investcorea8007   224  8  4 11:03 Downloads
+drwx------@ 81 investcorea8007  investcorea8007  2592  8  4 15:29 Library
+drwx------   4 investcorea8007  investcorea8007   128  8  4 09:51 Movies
+drwx------+  3 investcorea8007  investcorea8007    96  8  3 11:43 Music
+drwx------   4 investcorea8007  investcorea8007   160  8  4 15:29 OrbStack
+drwx------+  4 investcorea8007  investcorea8007   128  8  3 11:43 Pictures
+drwxr-xr-x+  4 investcorea8007  investcorea8007   128  8  3 11:43 Public
+investcorea8007@c5r1s2 ~ % 
+
+<폴더 안으로 이동>
+nvestcorea8007@c5r1s2 ~ % cd ~/codyssey/practice
+investcorea8007@c5r1s2 practice % 
+
+<텍스트파일을 만듬>
+investcorea8007@c5r1s2 practice % touch 123.txt
+investcorea8007@c5r1s2 practice % 
+
+<텍스트파일 확인>
+investcorea8007@c5r1s2 practice % ls -la 
+total 0
+drwxr-xr-x  3 investcorea8007  investcorea8007  96  8  4 16:20 .
+drwxr-xr-x  3 investcorea8007  investcorea8007  96  8  4 16:06 ..
+-rw-r--r--  1 investcorea8007  investcorea8007   0  8  4 16:20 123.txt
+investcorea8007@c5r1s2 practice % 
+
+<123파일에 어떤 내용이 있는지 확인>
+investcorea8007@c5r1s2 practice % cat 123.txt
+investcorea8007@c5r1s2 practice % 
+
+<123파일 카피본 만듬>
+investcorea8007@c5r1s2 practice % cp 123.txt copy_123.txt
+investcorea8007@c5r1s2 practice % ls -la
+total 0
+drwxr-xr-x  4 investcorea8007  investcorea8007  128  8  4 16:27 .
+drwxr-xr-x  3 investcorea8007  investcorea8007   96  8  4 16:06 ..
+-rw-r--r--  1 investcorea8007  investcorea8007    0  8  4 16:27 copy_123.txt
+-rw-r--r--  1 investcorea8007  investcorea8007    0  8  4 16:20 123.txt
+investcorea8007@c5r1s2 practice %
+
+<카피파일 이름을 welcome로 바꿈>
+investcorea8007@c5r1s2 practice % mv copy_123.txt welcome.txt
+investcorea8007@c5r1s2 practice % ls -la
+total 0
+drwxr-xr-x  4 investcorea8007  investcorea8007  128  8  4 17:16 .
+drwxr-xr-x  3 investcorea8007  investcorea8007   96  8  4 16:06 ..
+-rw-r--r--  1 investcorea8007  investcorea8007    0  8  4 16:27 welcome.txt
+-rw-r--r--  1 investcorea8007  investcorea8007    0  8  4 16:20 123.txt
+investcorea8007@c5r1s2 practice % 
+
+<123파일 삭제>
+investcorea8007@c5r1s2 practice % rm welcome.txt
+investcorea8007@c5r1s2 practice % ls -la
+total 0
+drwxr-xr-x  3 investcorea8007  investcorea8007  96  8  4 17:20 .
+drwxr-xr-x  3 investcorea8007  investcorea8007  96  8  4 16:06 ..
+-rw-r--r--  1 investcorea8007  investcorea8007   0  8  4 16:20 123.txt
+investcorea8007@c5r1s2 practice %
+
+
+
+
+
 
 ### (1) 터미널 및 권한 실습
 ```bash
